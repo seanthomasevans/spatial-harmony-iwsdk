@@ -1,4 +1,4 @@
-// Giant Steps chord progression — 16-bar AABA form
+// Giant Steps chord progression -- 16-bar AABA form
 // Three key centers: B major, G major, Eb major (symmetric major third cycle)
 
 export interface ChordChange {
@@ -10,7 +10,7 @@ export interface ChordChange {
   tones: number[];    // pitch classes in chord
 }
 
-// Pitch class mapping: C=0, C#=1, D=2, Eb=3, E=4, F=5, F#=6, G=7, Ab=8, A=9, Bb=10, B=11
+// Pitch class mapping: C=0, Db=1, D=2, Eb=3, E=4, F=5, Gb=6, G=7, Ab=8, A=9, Bb=10, B=11
 export const GIANT_STEPS: ChordChange[] = [
   { beat: 0,  name: 'Bmaj7',  root: 11, quality: 'maj7', keyCenter: 'B',  tones: [11, 3, 6, 10] },
   { beat: 2,  name: 'D7',     root: 2,  quality: 'dom7', keyCenter: 'G',  tones: [2, 6, 9, 0] },
@@ -39,30 +39,31 @@ export const GIANT_STEPS: ChordChange[] = [
 ];
 
 // Circle of fifths order for spatial layout
-export const CIRCLE_OF_FIFTHS = ['C','G','D','A','E','B','F#','Db','Ab','Eb','Bb','F'];
-export const PITCH_CLASS_NAMES = ['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
+// Using consistent naming that maps to pitch class indices
+export const CIRCLE_OF_FIFTHS_PC = [0, 7, 2, 9, 4, 11, 6, 1, 8, 3, 10, 5]; // C G D A E B F# Db Ab Eb Bb F
+export const CIRCLE_OF_FIFTHS_LABELS = ['C','G','D','A','E','B','F#','Db','Ab','Eb','Bb','F'];
 
-// Colors per pitch class (hue-mapped around the circle)
+// Colors per pitch class (hue-mapped around the circle, indexed 0-11)
 export const PITCH_COLORS: [number, number, number][] = [
-  [1.0, 0.2, 0.2],   // C  - red
-  [1.0, 0.4, 0.1],   // C# - orange-red
-  [1.0, 0.7, 0.0],   // D  - gold
-  [0.8, 1.0, 0.0],   // Eb - yellow-green
-  [0.2, 1.0, 0.2],   // E  - green
-  [0.0, 1.0, 0.6],   // F  - cyan-green
-  [0.0, 0.7, 1.0],   // F# - cyan
-  [0.2, 0.4, 1.0],   // G  - blue
-  [0.5, 0.2, 1.0],   // Ab - indigo
-  [0.8, 0.2, 1.0],   // A  - violet
-  [1.0, 0.2, 0.8],   // Bb - magenta
-  [1.0, 0.2, 0.5],   // B  - rose
+  [1.0, 0.2, 0.2],   // 0  C  - red
+  [1.0, 0.4, 0.1],   // 1  Db - orange-red
+  [1.0, 0.7, 0.0],   // 2  D  - gold
+  [0.8, 1.0, 0.0],   // 3  Eb - yellow-green
+  [0.2, 1.0, 0.2],   // 4  E  - green
+  [0.0, 1.0, 0.6],   // 5  F  - cyan-green
+  [0.0, 0.7, 1.0],   // 6  F# - cyan
+  [0.2, 0.4, 1.0],   // 7  G  - blue
+  [0.5, 0.2, 1.0],   // 8  Ab - indigo
+  [0.8, 0.2, 1.0],   // 9  A  - violet
+  [1.0, 0.2, 0.8],   // 10 Bb - magenta
+  [1.0, 0.2, 0.5],   // 11 B  - rose
 ];
 
 // Key center colors
-export const KEY_COLORS = {
-  B:  [0.23, 0.51, 0.96] as [number, number, number],  // blue
-  G:  [0.06, 0.73, 0.45] as [number, number, number],  // green
-  Eb: [0.96, 0.62, 0.17] as [number, number, number],  // orange
+export const KEY_COLORS: Record<string, [number, number, number]> = {
+  B:  [0.23, 0.51, 0.96],  // blue
+  G:  [0.06, 0.73, 0.45],  // green
+  Eb: [0.96, 0.62, 0.17],  // orange
 };
 
 // Note frequency from pitch class + octave
